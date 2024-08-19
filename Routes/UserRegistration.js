@@ -1,10 +1,11 @@
-const router = require('express').Router();
+import { Router } from 'express';
+const router = Router();
 
 // Importing the User model
-const User = require('./Models/User.cjs');
+import User from '../Models/User.js';
 
 // express route to register a new user
-export default UserRegistration = async (req, res) => {
+export default async function UserRegistration(req, res) {
     const { username, email, password } = req.body;
 
     try {
