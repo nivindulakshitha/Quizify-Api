@@ -1,10 +1,5 @@
-import { Router } from 'express';
-const router = Router();
-
-// Importing the User model
 import User from '../Models/User.js';
 
-// express route to register a new user
 export default async function UserRegistration(req, res) {
     const { username, email, password } = req.body;
 
@@ -18,7 +13,8 @@ export default async function UserRegistration(req, res) {
         res.status(201).json({
             success: true,
             data: user,
-            password: user.matchPassword(password)
+            password: user.matchPassword(password),
+            message: "User registered successfully"
         });
     } catch (error) {
         res.status(406).json({
