@@ -20,14 +20,14 @@ export default async function UserForgotPassword(req, res) {
         const transport = nodemailer.createTransport({
             service: 'Gmail',
             auth: {
-                user: process.env.VERIFICATION_EMAIL,
-                pass: process.env.VERIFICATION_EMAIL_PASSWORD
+                user: "fotutilizationmonitor@gmail.com",
+                pass: "imhm hbis uuvw ufxg"
             }
         });
 
         const mailOptions = {
-            from: 'info@demomailtrap.com',
-            to: user.email,
+            from: "fotutilizationmonitor@gmail.com",
+            to: "nivindulakshitha@gmail.com",
             subject: 'Quizify: Password Reset Code',
             text: `Your password reset code is ${code}`
         }
