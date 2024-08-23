@@ -4,6 +4,7 @@ import { config } from 'dotenv';
 import cors from 'cors';
 import serverless from 'serverless-http';
 import userRouter from './Routes/UserRoutes.js';
+import quizRouter from './Routes/QuizRoutes.js';
 import helmet from 'helmet';
 
 config();
@@ -30,8 +31,9 @@ api.use(async (req, res, next) => {
     }
 });
 
-// Express route to register a new user
+// Import the routes
 api.use('/api/user', userRouter);
+api.use('/api/quiz', quizRouter);
 
 // Set the connection to the database
 const databaseConnector = async (res) => {
