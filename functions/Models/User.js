@@ -16,8 +16,10 @@ const UserSchema = new mongoose.Schema({
 
     password: {
         type: String,
-        required: true,
-    }
+        required: true
+    },
+    resetPasswordToken: String,
+    resetPasswordExpire: Date,
 });
 
 UserSchema.pre('save', async function (next) {
@@ -37,9 +39,11 @@ UserSchema.methods.matchPassword = async function (enteredPassword) {
 
 UserSchema.methods.randomCode = async function () {
     const code = Math.floor(1000 + Math.random() * 9000);
-    console.log(code);
     const resetToken = crypto.createHash('sha256').update(code.toString()).digest('hex')
     const tokenExpire = Date.now() + 10 * 60 * 1000; // 10 minutes
+    this.resetPasswordToken = resetToken;
+    this.resetPasswordExpire = tokenExpire;
+    await this.save({ validateBeforeSave: false });
 
     return code;
 }
