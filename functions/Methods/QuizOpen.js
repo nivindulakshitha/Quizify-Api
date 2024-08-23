@@ -1,4 +1,5 @@
 import Quiz from "../Models/Quiz";
+import path from 'path';
 
 export default async function (req, res) {
     const quizId = req.params.id;
@@ -10,8 +11,9 @@ export default async function (req, res) {
             return res.status(404).json({ success: false, message: "Quiz not found." });
         }
 
-        res.render("quiz", {
-            quiz: quiz
+        res.status(200).send({
+            success: true,
+            data: quiz
         });
 
     } catch (error) {

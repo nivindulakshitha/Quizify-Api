@@ -1,5 +1,6 @@
 [build]
     functions="dist"
+    publish = "dist"
     node_version = "20.11.0"
 
 [functions]
@@ -8,7 +9,7 @@
 
 [[redirects]]
     force=true
-    to="/.netlify/functions/index/:splat"
+    to="/.netlify/functions/index"
     from="/*"
     status=200
 

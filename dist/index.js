@@ -7,7 +7,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.handler = void 0;
 var _mongoose = require("mongoose");
 var _express = _interopRequireWildcard(require("express"));
-var _path = _interopRequireDefault(require("path"));
 var _dotenv = require("dotenv");
 var _cors = _interopRequireDefault(require("cors"));
 var _serverlessHttp = _interopRequireDefault(require("serverless-http"));
@@ -67,8 +66,6 @@ api.use( /*#__PURE__*/function () {
 // Import the routes
 api.use('/api/user', _UserRoutes["default"]);
 api.use('/api/quiz', _QuizRoutes["default"]);
-api.set('view engine', 'ejs');
-api.set('views', './views');
 
 // Set the connection to the database
 var databaseConnector = /*#__PURE__*/function () {

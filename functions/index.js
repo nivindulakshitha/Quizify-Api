@@ -1,6 +1,5 @@
 import { set, connect } from 'mongoose';
 import express, { json } from 'express';
-import path from 'path';
 import { config } from 'dotenv';
 import cors from 'cors';
 import serverless from 'serverless-http';
@@ -35,9 +34,6 @@ api.use(async (req, res, next) => {
 // Import the routes
 api.use('/api/user', userRouter);
 api.use('/api/quiz', quizRouter);
-
-api.set('view engine', 'ejs');
-api.set('views', './views');
 
 // Set the connection to the database
 const databaseConnector = async (res) => {
