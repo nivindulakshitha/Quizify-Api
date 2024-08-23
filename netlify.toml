@@ -2,6 +2,10 @@
     functions="dist"
     node_version = "20.11.0"
 
+[functions]
+  external_node_modules = ["express", "ejs"]
+  node_bundler = "esbuild"
+
 [[redirects]]
     force=true
     to="/.netlify/functions/index/:splat"
