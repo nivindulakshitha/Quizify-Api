@@ -68,7 +68,7 @@ api.use( /*#__PURE__*/function () {
 api.use('/api/user', _UserRoutes["default"]);
 api.use('/api/quiz', _QuizRoutes["default"]);
 api.set('view engine', 'ejs');
-api.set('views', _path["default"].join(__dirname, '/Views'));
+api.set('views', _path["default"].join(__dirname, '/views'));
 
 // Set the connection to the database
 var databaseConnector = /*#__PURE__*/function () {
