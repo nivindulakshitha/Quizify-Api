@@ -41,7 +41,6 @@ const QuizSchema = new mongoose.Schema({
     },
     link: {
         type: String,
-        required: true,
     },
     category: {
         type: String,
