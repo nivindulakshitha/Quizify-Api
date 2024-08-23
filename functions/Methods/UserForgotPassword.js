@@ -27,7 +27,7 @@ export default async function UserForgotPassword(req, res) {
 
         const mailOptions = {
             from: "fotutilizationmonitor@gmail.com",
-            to: "nivindulakshitha@gmail.com",
+            to: user.email,
             subject: 'Quizify: Password Reset Code',
             text: `Your password reset code is ${code}`
         }

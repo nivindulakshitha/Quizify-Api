@@ -4,12 +4,14 @@ import { config } from 'dotenv';
 import cors from 'cors';
 import serverless from 'serverless-http';
 import userRouter from './Routes/UserRoutes.js';
+import helmet from 'helmet';
 
 config();
 
 const api = express();
 api.use(json());
 api.use(cors());
+api.use(helmet());
 
 // Middleware to connect to the database before processing any request
 api.use(async (req, res, next) => {
@@ -47,7 +49,7 @@ const databaseConnector = async (res) => {
 api.get("/", async (req, res) => {
     res.status(200).json({
         success: true,
-        message: "Connected to the server."
+        message: "Successfully connected to the server."
     });
 });
 
