@@ -1,10 +1,11 @@
 import Quiz from "../Models/Quiz";
 
 export default async function QuizCreate(req, res) {
-    const { questions, password, category, duration, questionsType, shuffleQuestions } = req.body;
+    const { name, questions, password, category, duration, questionsType, shuffleQuestions } = req.body;
 
     try {
         const quiz = await Quiz.create({
+            name,
             questions,
             password,
             category,

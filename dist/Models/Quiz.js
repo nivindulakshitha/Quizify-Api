@@ -46,8 +46,7 @@ var QuizSchema = new _mongoose["default"].Schema({
     "default": Date.now
   },
   link: {
-    type: String,
-    required: true
+    type: String
   },
   category: {
     type: String,
@@ -55,8 +54,7 @@ var QuizSchema = new _mongoose["default"].Schema({
   },
   duration: {
     type: Number,
-    required: true,
-    "default": (void 0).questions.length * 60
+    required: true
   },
   questionsType: {
     type: String,
@@ -97,7 +95,7 @@ QuizSchema.pre("save", /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }());
-quizSchema.methods.matchPassword = /*#__PURE__*/function () {
+QuizSchema.methods.matchPassword = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(enteredPassword) {
     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
       while (1) switch (_context2.prev = _context2.next) {

@@ -49,7 +49,6 @@ const QuizSchema = new mongoose.Schema({
     duration: {
         type: Number,
         required: true,
-        default: this.questions.length * 60,
     },
     questionsType: {
         type: String,
@@ -74,7 +73,7 @@ QuizSchema.pre("save", async function (next) {
     next();
 })
 
-quizSchema.methods.matchPassword = async function (enteredPassword) {
+QuizSchema.methods.matchPassword = async function (enteredPassword) {
     return await bycrypt.compare(enteredPassword, this.password);
 }
 

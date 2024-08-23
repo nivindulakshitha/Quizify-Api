@@ -1,6 +1,6 @@
 import UserQuiz from "../Models/UserQuiz";
 
-export default async function UserQuizTake(req, res) {
+export default async function UserQuizFinish(req, res) {
     const { userId, quizId, answers, score } = req.body;
 
     try {
