@@ -1,18 +1,20 @@
-function generateQuizHTML(quizData) {
-    // Create the HTML structure
-    const html = `
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Quiz Information</title>
-        </head>
-        <body>
-            <h1>hi</h1>
-        </body>
-        </html>
-    `;
-    
-    return html;
-}
+import Quiz from "../Models/Quiz";
 
-export default generateQuizHTML;
+export default async function (req, res) {
+    const quizId = req.params.id;
+
+    try {
+        const quiz = await Quiz.findById(quizId);
+
+        if (!quiz) {
+            return res.status(404).json({ success: false, message: "Quiz not found." });
+        }
+
+        res.render("quiz", {
+            quiz: quiz
+        });
+
+    } catch (error) {
+        res.status(400).json({ success: false, error: error.message });
+    }
+}

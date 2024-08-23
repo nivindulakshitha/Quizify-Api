@@ -12,7 +12,5 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
 var quizRouter = (0, _express.Router)();
 quizRouter.post("/create", _QuizCreate["default"]);
 quizRouter.post("/finish", _UserQuizFinish["default"]);
-quizRouter.get("/take/:id", function (req, res) {
-  res.send("\n        <html>\n            <head>\n                <title>Quizify</title>\n            </head>\n            <body>\n                <h1>Welcome to Quizify!</h1>\n                <p>This is the Quizify API.</p>\n            </body>\n        </html>\n    ");
-});
+quizRouter.get("/take/:id", _QuizOpen["default"]);
 var _default = exports["default"] = quizRouter;
