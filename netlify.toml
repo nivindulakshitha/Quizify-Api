@@ -1,0 +1,14 @@
+[build]
+    functions="dist"
+    node_version = "20.11.0"
+
+[[redirects]]
+    force=true
+    to="/.netlify/functions/index/:splat"
+    from="/*"
+    status=200
+
+[[headers]]
+  for = "/api/*"
+    [headers.values]
+      Access-Control-Allow-Origin = "*"
