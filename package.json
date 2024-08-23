@@ -4,8 +4,8 @@
   "description": "Quizify Backend API service",
   "main": "index.js",
   "scripts": {
-    "build": "babel functions -d dist && cpx 'functions/views/**/*' dist/views",
-    "dev": "babel functions -d dist && cpx 'functions/views/**/*' dist/views && netlify dev --dir=dist",
+    "build": "babel functions -d dist",
+    "dev": "babel functions -d dist && netlify dev --dir=dist",
     "deploy": "netlify deploy --prod"
   },
   "dependencies": {
