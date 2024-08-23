@@ -64,3 +64,21 @@ const QuizSchema = new mongoose.Schema({
         default: false,
     },
 });
+
+QuizSchema.pre("save", async function (next) {
+    if (!this.isModified("password")) {
+        next();
+    }
+
+    const salt = await bycrypt.genSalt(10);
+    this.password = await bycrypt.hash(this.password, salt);
+
+    next();
+})
+
+quizSchema.methods.matchPassword = async function (enteredPassword) {
+    return await bycrypt.compare(enteredPassword, this.password);
+}
+
+const Quiz = mongoose.model("Quiz", QuizSchema);
+export default Quiz;
