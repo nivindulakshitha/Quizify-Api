@@ -13,7 +13,7 @@ const QuizSchema = new mongoose.Schema({
                 required: true,
             },
             options: [
-                {   
+                {
                     number: {
                         type: Number,
                         required: true,
@@ -21,14 +21,13 @@ const QuizSchema = new mongoose.Schema({
                     option: {
                         type: String,
                         required: true,
-                    },
-                    isCorrect: {
-                        type: Boolean,
-                        required: true,
-                        default: false,
-                    },
+                    }
                 },
             ],
+            correctOption: {
+                type: Number,
+                required: true,
+            },
         },
     ],
     password: {
