@@ -37,7 +37,7 @@ api.use('/api/user', userRouter);
 api.use('/api/quiz', quizRouter);
 
 api.set('view engine', 'ejs');
-api.set('views', path.join(__dirname, '/views'));
+api.set('views', '/views');
 
 // Set the connection to the database
 const databaseConnector = async (res) => {
