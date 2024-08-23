@@ -1,13 +1,11 @@
 {
-  "name": "quizify-backend",
+  "name": "quizify-api",
   "version": "1.0.0",
-  "description": "Quizify Backend",
+  "description": "Quizify Backend API service",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "start": "node dist/index.js",
     "build": "babel functions -d dist",
-    "dev": "nodemon functions/index.js",
+    "dev": "babel functions -d dist & netlify dev --dir=functions",
     "deploy": "netlify deploy --prod"
   },
   "dependencies": {
@@ -16,6 +14,7 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-jwt": "^8.4.1",
+    "helmet": "^7.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.8.0",
     "mongoose": "^8.5.3",
