@@ -25,6 +25,10 @@ api.use((0, _express.json)());
 api.use((0, _cors["default"])());
 api.use((0, _helmet["default"])());
 
+// Set the rotues for the API
+api.use('/api/user', _UserRoutes["default"]);
+api.use('/api/quiz', _QuizRoutes["default"]);
+
 // Middleware to connect to the database before processing any request
 api.use( /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(req, res, next) {
@@ -62,10 +66,6 @@ api.use( /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }());
-
-// Import the routes
-api.use('/api/user', _UserRoutes["default"]);
-api.use('/api/quiz', _QuizRoutes["default"]);
 
 // Set the connection to the database
 var databaseConnector = /*#__PURE__*/function () {
@@ -150,7 +150,4 @@ api.get("/api", /*#__PURE__*/function () {
     return _ref4.apply(this, arguments);
   };
 }());
-
-// Use the correct path for serverless functions
-api.use("/api/user", _UserRoutes["default"]);
 var handler = exports.handler = (0, _serverlessHttp["default"])(api);
