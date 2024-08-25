@@ -15,49 +15,47 @@ function UserLogin(_x, _x2) {
 }
 function _UserLogin() {
   _UserLogin = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(req, res) {
-    var _req$body, email, password, user, passwordsMatched;
+    var _req$body, email, password, user;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
           _req$body = req.body, email = _req$body.email, password = _req$body.password;
-          _context.prev = 1;
-          _context.next = 4;
+          _context.next = 3;
           return _User["default"].findOne({
             email: email
           });
-        case 4:
+        case 3:
           user = _context.sent;
-          passwordsMatched = _User["default"].matchPassword(password, user.password);
-          if (user && passwordsMatched) {
-            res.status(200).json({
-              success: true,
-              message: "Successfully logged in.",
-              data: {
-                email: user.email,
-                name: user.name
-              }
-            });
-          } else {
-            res.status(401).json({
-              success: false,
-              message: "Registration failed due to incorrect email or password."
-            });
+          if (user) {
+            _context.next = 6;
+            break;
           }
-          _context.next = 13;
-          break;
-        case 9:
-          _context.prev = 9;
-          _context.t0 = _context["catch"](1);
-          console.log(_context.t0);
-          res.status(500).json({
+          return _context.abrupt("return", res.status(404).json({
             success: false,
-            message: "Failed to login due to an internal server error."
-          });
-        case 13:
+            code: 404,
+            message: "User not found for given email."
+          }));
+        case 6:
+          if (user.matchPassword(password)) {
+            _context.next = 8;
+            break;
+          }
+          return _context.abrupt("return", res.status(401).json({
+            success: false,
+            code: 401,
+            message: "Incorrect password. Please try again."
+          }));
+        case 8:
+          return _context.abrupt("return", res.status(200).json({
+            success: true,
+            message: "User logged in successfully.",
+            data: user
+          }));
+        case 9:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[1, 9]]);
+    }, _callee);
   }));
   return _UserLogin.apply(this, arguments);
 }

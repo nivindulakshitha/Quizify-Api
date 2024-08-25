@@ -45,12 +45,12 @@ function _UserForgotPassword() {
           transport = _nodemailer["default"].createTransport({
             service: 'Gmail',
             auth: {
-              user: "fotutilizationmonitor@gmail.com",
-              pass: "imhm hbis uuvw ufxg"
+              user: process.env.RESET_EMAIL,
+              pass: process.env.RESET_PASSWORD
             }
           });
           mailOptions = {
-            from: "fotutilizationmonitor@gmail.com",
+            from: "nividulakshikastu@gmail.com",
             to: user.email,
             subject: 'Quizify: Password Reset Code',
             text: "Your password reset code is ".concat(code)

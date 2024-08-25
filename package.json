@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "babel functions -d dist",
-    "dev": "babel functions -d dist && netlify dev --dir=dist",
-    "deploy": "netlify deploy --prod"
+    "dev": "netlify dev --dir=dist",
+    "deploy": "babel functions -d dist && netlify deploy --prod"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
