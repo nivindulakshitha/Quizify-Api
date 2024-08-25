@@ -43,17 +43,17 @@ function _UserForgotPassword() {
         case 9:
           code = _context.sent;
           transport = _nodemailer["default"].createTransport({
-            service: 'Gmail',
+            service: "Gmail",
             auth: {
               user: process.env.RESET_EMAIL,
               pass: process.env.RESET_PASSWORD
             }
           });
           mailOptions = {
-            from: "nividulakshikastu@gmail.com",
+            from: process.env.RESET_EMAIL,
             to: user.email,
-            subject: 'Quizify: Password Reset Code',
-            text: "Your password reset code is ".concat(code)
+            subject: "Quizify: Password Reset Code",
+            html: "\n        <div style=\"font-family: Arial, sans-serif; line-height: 1.6; color: #333;\">\n            <h2 style=\"color: #3366FF;\">Quizify: Password Reset Code</h2>\n            <p>Hello ".concat(user.name, ",</p>\n            <p>You requested a password reset. Please use the following code to reset your password:</p>\n            <div style=\"font-size: 20px; font-weight: bold; color: #FF5733;\">").concat(code, "</div>\n            <p>If you did not request a password reset, please ignore this email.</p>\n            <br>\n            <p>Thank you,</p>\n            <p>The Quizify Team</p>\n        </div>\n    ")
           };
           transport.sendMail(mailOptions, function (error, info) {
             if (error) {
@@ -65,7 +65,7 @@ function _UserForgotPassword() {
               });
               console.error("UserForgotPassword:", error);
             } else {
-              console.log('Message sent: %s', info.messageId);
+              console.log("Message sent: %s", info.messageId);
               res.status(200).json({
                 success: true,
                 message: "Code sent to your email ".concat(user.email)
