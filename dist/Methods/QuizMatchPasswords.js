@@ -15,7 +15,7 @@ function quizMatchPasswords(_x, _x2) {
 }
 function _quizMatchPasswords() {
   _quizMatchPasswords = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(req, res) {
-    var _req$body, quizId, password, quiz;
+    var _req$body, quizId, password, quiz, isPasswordMatched;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
@@ -36,42 +36,37 @@ function _quizMatchPasswords() {
             message: "Quiz not found."
           }));
         case 7:
-          _context.t0 = console;
-          _context.next = 10;
+          _context.next = 9;
           return quiz.matchPassword(password);
-        case 10:
-          _context.t1 = _context.sent;
-          _context.t0.log.call(_context.t0, _context.t1);
-          _context.next = 14;
-          return quiz.matchPassword(password);
-        case 14:
-          if (!_context.sent) {
-            _context.next = 16;
+        case 9:
+          isPasswordMatched = _context.sent;
+          if (!(isPasswordMatched === false)) {
+            _context.next = 12;
             break;
           }
           return _context.abrupt("return", res.status(401).json({
             success: false,
             message: "Incorrect password."
           }));
-        case 16:
+        case 12:
           res.status(200).json({
             success: true,
             message: "Password matched."
           });
-          _context.next = 22;
+          _context.next = 18;
           break;
-        case 19:
-          _context.prev = 19;
-          _context.t2 = _context["catch"](1);
+        case 15:
+          _context.prev = 15;
+          _context.t0 = _context["catch"](1);
           res.status(500).json({
             success: false,
-            error: _context.t2.message
+            error: _context.t0.message
           });
-        case 22:
+        case 18:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[1, 19]]);
+    }, _callee, null, [[1, 15]]);
   }));
   return _quizMatchPasswords.apply(this, arguments);
 }
