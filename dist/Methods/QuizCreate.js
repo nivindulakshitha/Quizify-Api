@@ -15,20 +15,21 @@ function QuizCreate(_x, _x2) {
 }
 function _QuizCreate() {
   _QuizCreate = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(req, res) {
-    var _req$body, name, questions, password, category, duration, questionsType, shuffleQuestions, quiz;
+    var _req$body, ownerId, name, questions, password, category, duration, quizType, shuffleQuestions, quiz;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
-          _req$body = req.body, name = _req$body.name, questions = _req$body.questions, password = _req$body.password, category = _req$body.category, duration = _req$body.duration, questionsType = _req$body.questionsType, shuffleQuestions = _req$body.shuffleQuestions;
+          _req$body = req.body, ownerId = _req$body.ownerId, name = _req$body.name, questions = _req$body.questions, password = _req$body.password, category = _req$body.category, duration = _req$body.duration, quizType = _req$body.quizType, shuffleQuestions = _req$body.shuffleQuestions;
           _context.prev = 1;
           _context.next = 4;
           return _Quiz["default"].create({
+            ownerId: ownerId,
             name: name,
             questions: questions,
             password: password,
             category: category,
             duration: duration,
-            questionsType: questionsType,
+            quizType: quizType,
             shuffleQuestions: shuffleQuestions
           });
         case 4:

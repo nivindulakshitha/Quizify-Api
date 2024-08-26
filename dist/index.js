@@ -76,12 +76,7 @@ var databaseConnector = /*#__PURE__*/function () {
           _context2.prev = 0;
           _context2.next = 3;
           return (0, _mongoose.connect)(process.env.CONNECTION_URI, {
-            dbName: process.env.DATABASE_NAME,
-            bufferCommands: false,
-            // Disable buffering
-            connectTimeoutMS: 20000,
-            // 20 seconds
-            socketTimeoutMS: 45000 // 45 seconds
+            dbName: process.env.DATABASE_NAME
           });
         case 3:
           console.log("Connected to the database.");

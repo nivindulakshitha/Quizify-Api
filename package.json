@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "babel functions -d dist",
-    "dev": "netlify dev --dir=dist",
+    "dev": "babel functions -d dist && netlify dev --dir=dist",
     "deploy": "babel functions -d dist && netlify deploy --prod"
   },
   "dependencies": {
