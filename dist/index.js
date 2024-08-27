@@ -13,6 +13,7 @@ var _serverlessHttp = _interopRequireDefault(require("serverless-http"));
 var _UserRoutes = _interopRequireDefault(require("./Routes/UserRoutes.js"));
 var _QuizRoutes = _interopRequireDefault(require("./Routes/QuizRoutes.js"));
 var _helmet = _interopRequireDefault(require("helmet"));
+var _DatabaseConnectoin = _interopRequireDefault(require("./Methods/DatabaseConnectoin.js"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { "default": e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n["default"] = e, t && t.set(e, n), n; }
@@ -41,7 +42,7 @@ api.use( /*#__PURE__*/function () {
             break;
           }
           _context.next = 3;
-          return databaseConnector(res);
+          return (0, _DatabaseConnectoin["default"])(res);
         case 3:
           databaseConnection = _context.sent;
           if (databaseConnection) {
@@ -67,41 +68,11 @@ api.use( /*#__PURE__*/function () {
   };
 }());
 
-// Set the connection to the database
-var databaseConnector = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(res) {
-    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-      while (1) switch (_context2.prev = _context2.next) {
-        case 0:
-          _context2.prev = 0;
-          _context2.next = 3;
-          return (0, _mongoose.connect)(process.env.CONNECTION_URI, {
-            dbName: process.env.DATABASE_NAME
-          });
-        case 3:
-          console.log("Connected to the database.");
-          return _context2.abrupt("return", true);
-        case 7:
-          _context2.prev = 7;
-          _context2.t0 = _context2["catch"](0);
-          console.log(_context2.t0);
-          return _context2.abrupt("return", false);
-        case 11:
-        case "end":
-          return _context2.stop();
-      }
-    }, _callee2, null, [[0, 7]]);
-  }));
-  return function databaseConnector(_x4) {
-    return _ref2.apply(this, arguments);
-  };
-}();
-
 // Root route for testing server connectivity
 api.get("/", /*#__PURE__*/function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(req, res) {
-    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-      while (1) switch (_context3.prev = _context3.next) {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(req, res) {
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) switch (_context2.prev = _context2.next) {
         case 0:
           res.status(200).json({
             success: true,
@@ -109,26 +80,26 @@ api.get("/", /*#__PURE__*/function () {
           });
         case 1:
         case "end":
-          return _context3.stop();
+          return _context2.stop();
       }
-    }, _callee3);
+    }, _callee2);
   }));
-  return function (_x5, _x6) {
-    return _ref3.apply(this, arguments);
+  return function (_x4, _x5) {
+    return _ref2.apply(this, arguments);
   };
 }());
 
 // Express API implementation for testing DB connectivity
 api.get("/api", /*#__PURE__*/function () {
-  var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(req, res) {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(req, res) {
     var databaseConnection;
-    return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-      while (1) switch (_context4.prev = _context4.next) {
+    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+      while (1) switch (_context3.prev = _context3.next) {
         case 0:
-          _context4.next = 2;
-          return databaseConnector(res);
+          _context3.next = 2;
+          return (0, _DatabaseConnectoin["default"])(res);
         case 2:
-          databaseConnection = _context4.sent;
+          databaseConnection = _context3.sent;
           if (databaseConnection) {
             res.status(200).json({
               success: true,
@@ -142,12 +113,12 @@ api.get("/api", /*#__PURE__*/function () {
           }
         case 4:
         case "end":
-          return _context4.stop();
+          return _context3.stop();
       }
-    }, _callee4);
+    }, _callee3);
   }));
-  return function (_x7, _x8) {
-    return _ref4.apply(this, arguments);
+  return function (_x6, _x7) {
+    return _ref3.apply(this, arguments);
   };
 }());
 var handler = exports.handler = (0, _serverlessHttp["default"])(api);
