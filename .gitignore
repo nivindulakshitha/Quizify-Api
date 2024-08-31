@@ -131,3 +131,4 @@ out
 
 # Local Netlify folder
 .netlify
+netlify.toml
